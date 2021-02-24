@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("Sisyphos Soft");
     QCoreApplication::setOrganizationDomain("");
     QCoreApplication::setApplicationName("QDigibib");
-    QTextCodec::setCodecForTr( QTextCodec::codecForName( "UTF-8" ));
+    QTextCodec::setCodecForLocale( QTextCodec::codecForName( "UTF-8" ));
     MainWindow mw;
     mw.show();
     a.connect( &a, SIGNAL( lastWindowClosed() ), &a, SLOT( quit() ) );

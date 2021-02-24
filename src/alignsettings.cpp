@@ -73,9 +73,9 @@ void AlignSettings::createLayout()
     _preferManualRowsButton = new QPushButton(tr("Man"));
     _preferManualRowsButton->setToolTip(tr("Zeilenanzahl manuell auswählen"));
 
-    _preferHButton->setCheckable(TRUE);
-    _preferVButton->setCheckable(TRUE);
-    _preferManualRowsButton->setCheckable(TRUE);
+    _preferHButton->setCheckable(true);
+    _preferVButton->setCheckable(true);
+    _preferManualRowsButton->setCheckable(true);
 
     _preferButtonGroup->addButton(_preferHButton);
     _preferButtonGroup->addButton(_preferVButton);
@@ -134,12 +134,12 @@ void AlignSettings::createLayout()
     _hAlignRandomButton = new QPushButton(tr("Zufällig"));
     _hAlignRandomButton->setToolTip(tr("Zufällig verteilen"));
 
-    _hAlignLeftButton->setCheckable(TRUE);
-    _hAlignCenterButton->setCheckable(TRUE);
-    _hAlignRightButton->setCheckable(TRUE);
-    _hAlignEqualButton->setCheckable(TRUE);
-    _hAlignManualButton->setCheckable(TRUE);
-    _hAlignRandomButton->setCheckable(TRUE);
+    _hAlignLeftButton->setCheckable(true);
+    _hAlignCenterButton->setCheckable(true);
+    _hAlignRightButton->setCheckable(true);
+    _hAlignEqualButton->setCheckable(true);
+    _hAlignManualButton->setCheckable(true);
+    _hAlignRandomButton->setCheckable(true);
 
     _hAlignButtonGroup->addButton(_hAlignLeftButton,Cover::left);
     _hAlignButtonGroup->addButton(_hAlignCenterButton,Cover::center);
@@ -198,12 +198,12 @@ void AlignSettings::createLayout()
     _vAlignRandomButton = new QPushButton(tr("Zufällig"));
     _vAlignRandomButton->setToolTip(tr("Zufällig verteilen"));
 
-    _vAlignTopButton->setCheckable(TRUE);
-    _vAlignCenterButton->setCheckable(TRUE);
-    _vAlignBottomButton->setCheckable(TRUE);
-    _vAlignEqualButton->setCheckable(TRUE);
-    _vAlignManualButton->setCheckable(TRUE);
-    _vAlignRandomButton->setCheckable(TRUE);
+    _vAlignTopButton->setCheckable(true);
+    _vAlignCenterButton->setCheckable(true);
+    _vAlignBottomButton->setCheckable(true);
+    _vAlignEqualButton->setCheckable(true);
+    _vAlignManualButton->setCheckable(true);
+    _vAlignRandomButton->setCheckable(true);
 
     _vAlignButtonGroup->addButton(_vAlignTopButton,Cover::top);
     _vAlignButtonGroup->addButton(_vAlignCenterButton,Cover::center);
@@ -243,18 +243,18 @@ void AlignSettings::createLayout()
 
 void AlignSettings::init()
 {
-    _vAlignButtonGroup->button(_cover->vAlignment())->setChecked(TRUE);
-    _hAlignButtonGroup->button(_cover->hAlignment())->setChecked(TRUE);
-    _rowBox->setDisabled(TRUE);
+    _vAlignButtonGroup->button(_cover->vAlignment())->setChecked(true);
+    _hAlignButtonGroup->button(_cover->hAlignment())->setChecked(true);
+    _rowBox->setDisabled(true);
     if (_cover->manRows())
     {
-        _preferManualRowsButton->setChecked(TRUE);
-        _rowBox->setDisabled(FALSE);
+        _preferManualRowsButton->setChecked(true);
+        _rowBox->setDisabled(false);
     }
     else if (_cover->preferVertical())
-        _preferVButton->setChecked(TRUE);
+        _preferVButton->setChecked(true);
     else
-        _preferHButton->setChecked(TRUE);
+        _preferHButton->setChecked(true);
     _underfullRowBox->setRange(1,_cover->rows());
     _underfullRowBox->setValue(_cover->underfullRow());
     _rowBox->setRange(1,_cover->imageListSize());
@@ -285,14 +285,14 @@ void AlignSettings::setPreferedLayout(QAbstractButton * button)
 {
     if (button == _preferVButton)
     {
-        _cover->setManRows(FALSE);
-        _cover->setPreferVertical(TRUE);
+        _cover->setManRows(false);
+        _cover->setPreferVertical(true);
     }
     else if (button == _preferHButton)
     {
-        _cover->setPreferVertical(FALSE);
-        _cover->setManRows(FALSE);
+        _cover->setPreferVertical(false);
+        _cover->setManRows(false);
     }
     else
-        _cover->setManRows(TRUE);
+        _cover->setManRows(true);
 }

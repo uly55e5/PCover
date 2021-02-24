@@ -10,7 +10,7 @@ SOURCES += main.cpp \
  texttools.cpp
 TEMPLATE = app
 CONFIG += warn_on \
-	  thread \
+      thread \
           qt \
           debug
 TARGET = ../bin/pcover
@@ -28,4 +28,6 @@ HEADERS += m3uplaylist.h \
 INCLUDEPATH += /usr/include/taglib
 
 LIBS += -ltag
+
+QT += widgets
 

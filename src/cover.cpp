@@ -54,12 +54,12 @@ void Cover::readSettings()
 {
     _hAlign= equal;
     _vAlign= equal;
-    _manRows = FALSE;
-    _autoSingleCoverSize = TRUE;
+    _manRows = false;
+    _autoSingleCoverSize = true;
     _singleCoverSize=QSize(200,200);
     _coverSize=1200;
     _rows=1;
-    _preferVertical=FALSE;
+    _preferVertical=false;
     _singleCoverAlpha=70;
     _underfullRow=255;
 
@@ -96,7 +96,7 @@ void Cover::addText(QString text)
     if (_coverScene == 0)
         return;
     QGraphicsTextItem * item = _coverScene->addText(text);
-    //item->setVisible(TRUE);
+    //item->setVisible(true);
     item->setFlags(QGraphicsItem::ItemIsMovable |QGraphicsItem::ItemIsSelectable );
     item->setZValue(1);
     emit coverChanged();
@@ -194,8 +194,8 @@ void Cover::updateScene()
             posy=rowc*_singleCoverSize.height() + _topMargin + (_vSpace*rowc);
         QGraphicsPixmapItem * item = _pixmapItemList.value(i);
         item->setPos(posx,posy);
-        item->scale((qreal)_singleCoverSize.width()/item->sceneBoundingRect().width(),
-                    (qreal)_singleCoverSize.height()/item->sceneBoundingRect().height());
+        item->setTransform(QTransform::fromScale((qreal)_singleCoverSize.width()/item->sceneBoundingRect().width(),
+                    (qreal)_singleCoverSize.height()/item->sceneBoundingRect().height()),true);
         colc++;
         if (colc==cols || (rowc == _underfullRow-1 && colc == (pixs % cols)))
         {
@@ -227,10 +227,14 @@ void Cover::updateScene()
 void Cover::setAlpha(QPixmap & pixmap)
 {
     int alpha = _singleCoverAlpha*255/100;
-    QColor color(alpha,alpha,alpha,alpha);
     QPixmap alphaMap(pixmap.size());
-    alphaMap.fill(color);
-    pixmap.setAlphaChannel(alphaMap);
+    alphaMap.fill(Qt::transparent);
+    QPainter p(&alphaMap);
+    p.setOpacity(alpha);
+    p.drawPixmap(0, 0, pixmap);
+    p.end();
+    pixmap = alphaMap;
+
 }
 
 bool Cover::saveCover(QString fileName)
@@ -242,7 +246,7 @@ bool Cover::saveCover(QString fileName)
     image.save(fileName);
     QFileInfo info(fileName);
     _lastDir = info.dir().absolutePath();
-    return TRUE;
+    return true;
 }
 
 QString Cover::lastDir()

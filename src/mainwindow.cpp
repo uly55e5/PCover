@@ -80,21 +80,21 @@ void MainWindow::createActions()
     _saveCoverAct = new QAction( tr( "Cover speichern" ), this);
     _saveCoverAct->setShortcut( tr( "Ctrl+S" ) );
     _saveCoverAct->setStatusTip( tr( "Speichert das aktuelle Cover") );
-    _saveCoverAct->setDisabled(TRUE);
+    _saveCoverAct->setDisabled(true);
 
     _savePlaylistAct = new QAction( tr( "Playlist als Text speichern" ), this);
     _savePlaylistAct->setShortcut( tr( "Ctrl+P" ) );
     _savePlaylistAct->setStatusTip( tr( "Speichert die aktuelle Playlist") );
-    _savePlaylistAct->setDisabled(TRUE);
+    _savePlaylistAct->setDisabled(true);
 
     _formatAlignmentAct = new QAction(tr( "Anordnung..." ),this);
     _formatAlignmentAct->setShortcut(tr ("Ctrl+A"));
     _formatAlignmentAct->setStatusTip(tr( "Anordnung der Einzelcover" ));
-    _formatAlignmentAct->setDisabled(TRUE);
+    _formatAlignmentAct->setDisabled(true);
 
     _formatSizeColorAct = new QAction(tr("Größe und Farbe..."),this);
     _formatSizeColorAct->setStatusTip(tr("Einstellung von Größen und Farben"));
-    _formatSizeColorAct->setDisabled(TRUE);
+    _formatSizeColorAct->setDisabled(true);
 
     _toolTextAct = new QAction(tr("Text..."),this);
 
@@ -138,10 +138,10 @@ void MainWindow::openM3UFile()
     _currPlaylist = new M3UPlaylist(fileName);
     _cover = new Cover(_currPlaylist);
     _songListView->setPlaylist(_currPlaylist);
-    _saveCoverAct->setDisabled(FALSE);
-    _savePlaylistAct->setDisabled(FALSE);
-    _formatAlignmentAct->setDisabled(FALSE);
-    _formatSizeColorAct->setDisabled(FALSE);
+    _saveCoverAct->setDisabled(false);
+    _savePlaylistAct->setDisabled(false);
+    _formatAlignmentAct->setDisabled(false);
+    _formatSizeColorAct->setDisabled(false);
     connect(_cover,SIGNAL(coverChanged()),this, SLOT(updateCoverView()));    _coverView->setScene(_cover->scene());
     connect(_songListView, SIGNAL(addToCover(QString)), _cover, SLOT(addText(QString)));
     updateCoverView();
@@ -206,7 +206,7 @@ CoverView::CoverView ( QWidget * parent)
     : QGraphicsView(parent)
 {
     QSizePolicy policy(QSizePolicy::Expanding,QSizePolicy::Expanding);
-    policy.setHeightForWidth(TRUE);
+    policy.setHeightForWidth(true);
     setSizePolicy(policy);
 }
 
